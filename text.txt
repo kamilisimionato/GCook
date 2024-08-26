@@ -1,2 +1,13 @@
 git config --global user.name kamilisimionato
 git config --global user.email kamili.simionato@etec.sp.gov.br
+
+Criando e executando migrações:
+   Verificar se tem a ferramenta: 
+        dotnet ef
+    Instalar a ferramenta:
+        dotnet tool install --global dotnet-ef --version 8.0.8
+    Atualizar ferramenta:
+        dotnet tool update --global dotnet-ef --version 8.0.8
+
+    Criar uma migração:
+        dotnet ef migrations add criarBanco
