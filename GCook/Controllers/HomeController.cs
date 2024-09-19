@@ -15,7 +15,7 @@ public class HomeController : Controller
     public HomeController(
         ILogger<HomeController> logger,
         AppDbContext context
-        )
+    )
     {
         _logger = logger;
         _context = context;
@@ -29,13 +29,24 @@ public class HomeController : Controller
                 .Where(c => c.ExibirHome)
                 .AsNoTracking()
                 .ToList(),
-            Receitas =  _context.Receitas
+            Receitas = _context.Receitas
                 .Include(r => r.Categoria)
                 .Include(r => r.Ingredientes)
                 .AsNoTracking()
                 .ToList()
         };
         return View(home);
+    }
+
+    public IActionResult Receita(int id)
+    {
+        Receita receita = _context.Receitas
+            .Include(r => r.Categoria)
+            .Include(r => r.Ingredientes)
+            .ThenInclude(ri => ri.Ingrediente)
+            .AsNoTracking()
+            .FirstOrDefault(r => r.Id == id);
+        return View(receita);
     }
 
     public IActionResult Privacy()
