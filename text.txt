@@ -12,3 +12,5 @@ Criando e executando migrações:
     Criar uma migração:
         dotnet ef migrations add criarBanco
         dotnet ef database update
+
+dotnet-aspnet-codegenerator controller -name CategoriasController -m Categoria -dc AppDbContext -outDir Controllers -l "~/Views/Shared/_LayoutAdmin.cshtml"

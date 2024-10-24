@@ -1,18 +1,19 @@
 using System.Net.Mail;
 
 namespace GCook.Helpers;
-    public static class Helper
+
+public static class Helper
+{
+    public static bool IsValidEmail(string email)
     {
-        public static bool IsValidEmail(string email)
+        try
         {
-            try
-            {
-                MailAddress m = new(email);
-                return true;
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
+            MailAddress m = new(email);
+            return true;
+        }
+        catch (FormatException)
+        {
+            return false;
         }
     }
+}
