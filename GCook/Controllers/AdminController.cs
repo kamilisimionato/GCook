@@ -1,32 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
-namespace GCook.Controllers
+namespace GCook.Controllers;
+
+[Authorize(Roles = "Administrador")]
+public class AdminController : Controller
 {
-    [Route("[controller]")]
-    public class AdminController : Controller
+    private readonly ILogger<AdminController> _logger;
+
+    public AdminController(ILogger<AdminController> logger)
     {
-        private readonly ILogger<AdminController> _logger;
+        _logger = logger;
+    }
 
-        public AdminController(ILogger<AdminController> logger)
-        {
-            _logger = logger;
-        }
+    public IActionResult Index()
+    {
+        return View();
+    }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
-        }
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View("Error!");
     }
 }
